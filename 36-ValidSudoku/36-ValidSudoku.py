@@ -1,19 +1,20 @@
+# Last updated: 7/8/2025, 11:46:52 PM
 class Solution(object):
     def isValidSudoku(self, board):
-        row=collections.defaultdict(set)
-        col=collections.defaultdict(set)
-        square=collections.defaultdict(set)
-        
-        for i in range(9):
-            for j in range(9):
-                if board[i][j]=='.':
+        rows = defaultdict(set)
+        cols = defaultdict(set)
+        boxes = defaultdict(set)
+        for r in range(9):
+            for c in range(9):
+                val = board[r][c]
+                if val == ".":
                     continue
-                if (board[i][j] in row[i] or
-                    board[i][j] in col[j] or
-                    board[i][j] in square[(i//3,j//3)]):
+                if val in rows[r] or val in cols[c] or val in boxes[(r//3, c//3)]:
                     return False
-                col[j].add(board[i][j])
-                row[i].add(board[i][j])
-                square[(i//3,j//3)].add(board[i][j])
-
+                rows[r].add(val)
+                cols[c].add(val)
+                boxes[(r//3, c//3)].add(val)
         return True
+
+
+        
