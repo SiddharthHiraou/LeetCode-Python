@@ -1,13 +1,15 @@
+# Last updated: 7/22/2025, 12:14:49 AM
 class Solution(object):
     def isPalindrome(self, s):
+        newstr=""
+        for i in s:
+            if i.isalnum():
+                newstr += i.lower()
+        
         left=0
-        right=len(s)-1
-        while left<right:
-            if not s[left].isalnum():
-                left+=1
-            elif not s[right].isalnum():
-                right-=1
-            elif s[left].lower()!=s[right].lower():
+        right=len(newstr)-1
+        while(left<right):
+            if newstr[left]!=newstr[right]:
                 return False
             else:
                 left+=1
